@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventário Completo</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffccff, #ff99cc, #ff66b2);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            height: 500px;
+            margin: 20px auto;
+            overflow: hidden;
+            background-color: #fff7f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .seta {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: #ff66b2;
+            cursor: pointer;
+            user-select: none;
+            padding: 15px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .seta-esquerda {
+            left: 10px;
+        }
+        .seta-direita {
+            right: 10px;
+        }
+        .slide-info {
+            margin-top: 10px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventário Completo</h1>
+    
+    <div class="slideshow-container">
+        <!-- Slides serão inseridos aqui pelo JavaScript -->
+        
+        <span class="seta seta-esquerda" onclick="voltarSlide()">&#8249;</span>
+        <span class="seta seta-direita" onclick="proximoSlide()">&#8250;</span>
+    </div>
+    
+    <div class="slide-info" id="slide-info">Item 1 de 100</div>
+
+    <script>
+        // Configuração do slideshow
+        let slideIndex = 0;
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        
+        // Criar os slides dinamicamente
+        for (let i = 1; i <= 100; i++) {
+            const slide = document.createElement('img');
+            slide.className = 'slides';
+            slide.src = `https://raw.githubusercontent.com/RaquelSantos380/Seja-Bem-vindo-A-LojinhaDaRaky/main/minhas%20imagens/${i}.jpg`;
+            slide.alt = `Slide ${i}`;
+            slideshowContainer.insertBefore(slide, slideshowContainer.firstChild);
+        }
+        
+        const slides = document.getElementsByClassName("slides");
+        const slideInfo = document.getElementById("slide-info");
+        
+        // Mostrar o slide inicial
+        mostrarSlide(slideIndex);
+        
+        function mostrarSlide(index) {
+            // Esconder todos os slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            // Mostrar o slide atual
+            slides[index].style.display = "block";
+            
+            // Atualizar informação do slide
+            slideInfo.textContent = `Item ${index + 1} de ${slides.length}`;
+        }
+        
+        function proximoSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            mostrarSlide(slideIndex);
+        }
+        
+        function voltarSlide() {
+            slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+            mostrarSlide(slideIndex);
+        }
+        
+        // Navegação por teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                proximoSlide();
+            } else if (event.key === 'ArrowLeft') {
+                voltarSlide();
+            }
+        });
+    </script>
+</body>
+</html>
