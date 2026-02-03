@@ -68,15 +68,16 @@
         <span class="seta seta-direita" onclick="proximoSlide()">&#8250;</span>
     </div>
     
-    <div class="slide-info" id="slide-info">Item 1 de 100</div>
+    <div class="slide-info" id="slide-info">Item 1 de 81</div>
 
     <script>
         // Configuração do slideshow
         let slideIndex = 0;
         const slideshowContainer = document.querySelector('.slideshow-container');
+        const totalSlides = 81; // Alterado de 100 para 81
         
         // Criar os slides dinamicamente
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= totalSlides; i++) {
             const slide = document.createElement('img');
             slide.className = 'slides';
             slide.src = `https://raw.githubusercontent.com/RaquelSantos380/Seja-Bem-vindo-A-LojinhaDaRaky/main/minhas%20imagens/${i}.jpg`;
